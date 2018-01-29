@@ -1,0 +1,208 @@
+<html>
+<head>
+<title>BasicOpsTest.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(128,128,128); }
+.s3 { color: rgb(104,151,187); }
+.s4 { color: rgb(106,135,89); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+BasicOpsTest.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">canvastest</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">import </span><span class="s1">javafx.application.*</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">javafx.scene.Scene</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">javafx.scene.control.Label</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">javafx.scene.paint.Color</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">javafx.scene.shape.Line</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">javafx.scene.shape.Rectangle</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">javafx.scene.text.Font</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">javafx.stage.Stage</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">javafx.scene.layout.Pane</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">javafx.scene.control.Button</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">java.util.Random</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">javafx.animation.PauseTransition</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">BasicOpsTest </span><span class="s0">extends </span><span class="s1">Application { 
+    </span><span class="s2">//Creating the main function using javafx</span><span class="s1"> 
+    </span><span class="s0">public static void </span><span class="s1">main(String[] args) { launch(args)</span><span class="s0">; </span><span class="s1">} 
+ 
+    </span><span class="s0">int </span><span class="s1">x = </span><span class="s3">1000</span><span class="s0">; </span><span class="s2">//Using these assigned values to the integers will make building the scene easier.</span><span class="s1"> 
+    </span><span class="s0">int </span><span class="s1">y = </span><span class="s3">600</span><span class="s0">;</span><span class="s1"> 
+ 
+    </span><span class="s0">public </span><span class="s1">Stage window</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Scene firstscene</span><span class="s0">, </span><span class="s1">mainscreen</span><span class="s0">; </span><span class="s2">//The two screens of the application.</span><span class="s1"> 
+    Label scenepop</span><span class="s0">, </span><span class="s1">mainTitle</span><span class="s0">; </span><span class="s2">//Scenepop is the instructions that will be portrayed in the first scene</span><span class="s1"> 
+    </span><span class="s2">//And mainTitle is the main title of the game, Memory Game.</span><span class="s1"> 
+    Button proceed</span><span class="s0">;</span><span class="s1"> 
+    Pane lay</span><span class="s0">; </span><span class="s2">//These two panes are for the layouts of the two scenes.</span><span class="s1"> 
+    Pane lay2</span><span class="s0">;</span><span class="s1"> 
+    Line horiz</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">int </span><span class="s1">randval1</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">int </span><span class="s1">randval2</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">int </span><span class="s1">randval3</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">int </span><span class="s1">click1=-</span><span class="s3">1</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">int </span><span class="s1">click2=-</span><span class="s3">1</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">int </span><span class="s1">click3=-</span><span class="s3">1</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">boolean </span><span class="s1">keepPlaying = </span><span class="s0">true;</span><span class="s1"> 
+ 
+ 
+    </span><span class="s0">public void </span><span class="s1">onclick(Rectangle r) { 
+        r.setFill(Color.RED)</span><span class="s0">;</span><span class="s1"> 
+        System.out.println(</span><span class="s4">&quot;You pressed the &quot; </span><span class="s1">+r)</span><span class="s0">;</span><span class="s1"> 
+ 
+        </span><span class="s0">if      </span><span class="s1">(click1 == -</span><span class="s3">1</span><span class="s1">) { 
+            click1 = (</span><span class="s0">int</span><span class="s1">) ((r.getX() - </span><span class="s3">50</span><span class="s1">) / </span><span class="s3">250 </span><span class="s1">+ </span><span class="s3">4 </span><span class="s1">* ((r.getY() - </span><span class="s3">100</span><span class="s1">) / </span><span class="s3">250</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+        } 
+        </span><span class="s0">else if </span><span class="s1">(click2 == -</span><span class="s3">1</span><span class="s1">) { 
+            click2 = (</span><span class="s0">int</span><span class="s1">) ((r.getX() - </span><span class="s3">50</span><span class="s1">) / </span><span class="s3">250 </span><span class="s1">+ </span><span class="s3">4 </span><span class="s1">* ((r.getY() - </span><span class="s3">100</span><span class="s1">) / </span><span class="s3">250</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+        } 
+        </span><span class="s0">else if </span><span class="s1">(click3 == -</span><span class="s3">1</span><span class="s1">) { 
+            click3 = (</span><span class="s0">int</span><span class="s1">) ((r.getX() - </span><span class="s3">50</span><span class="s1">) / </span><span class="s3">250 </span><span class="s1">+ </span><span class="s3">4 </span><span class="s1">* ((r.getY() - </span><span class="s3">100</span><span class="s1">) / </span><span class="s3">250</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+        } 
+ 
+        </span><span class="s0">if </span><span class="s1">((click1 != -</span><span class="s3">1</span><span class="s1">) &amp;&amp; (click2 != -</span><span class="s3">1</span><span class="s1">) &amp;&amp; (click3 != -</span><span class="s3">1</span><span class="s1">)) { 
+            </span><span class="s0">if </span><span class="s1">((randval1 == click1) &amp;&amp; (randval2 == click2) &amp;&amp; (randval3 == click3)) { 
+                Label win = </span><span class="s0">new </span><span class="s1">Label(</span><span class="s4">&quot;Well Played!!!&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                win.setFont(</span><span class="s0">new </span><span class="s1">Font(</span><span class="s4">&quot;Comic Sans&quot;</span><span class="s0">, </span><span class="s3">60</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+                lay2.getChildren().add(win)</span><span class="s0">;</span><span class="s1"> 
+                win.setLayoutX(x/</span><span class="s3">3</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                win.setLayoutY(</span><span class="s3">250</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                System.out.println(</span><span class="s4">&quot;You won!&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+            } </span><span class="s0">else </span><span class="s1">{ 
+                Label lose = </span><span class="s0">new </span><span class="s1">Label(</span><span class="s4">&quot;OOPS, Try again!&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                lose.setFont(</span><span class="s0">new </span><span class="s1">Font(</span><span class="s4">&quot;Comic Sans&quot;</span><span class="s0">, </span><span class="s3">60</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+                lay2.getChildren().add(lose)</span><span class="s0">;</span><span class="s1"> 
+                lose.setLayoutX(x/</span><span class="s3">3</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                lose.setLayoutY(</span><span class="s3">250</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                System.out.println(</span><span class="s4">&quot;You lost!&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+            } 
+            click1 =-</span><span class="s3">1</span><span class="s0">;</span><span class="s1"> 
+            click2 =-</span><span class="s3">1</span><span class="s0">;</span><span class="s1"> 
+            click3 =-</span><span class="s3">1</span><span class="s0">;</span><span class="s1"> 
+        } 
+ 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public void </span><span class="s1">start(Stage primaryStage) { 
+        window = primaryStage</span><span class="s0">;</span><span class="s1"> 
+ 
+        lay = </span><span class="s0">new </span><span class="s1">Pane()</span><span class="s0">;</span><span class="s1"> 
+        lay2 = </span><span class="s0">new </span><span class="s1">Pane()</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s2">//Building the first scene that displays the instructions. The first scene is going to be 4</span><span class="s1"> 
+        firstscene = </span><span class="s0">new </span><span class="s1">Scene(lay</span><span class="s0">, </span><span class="s3">400</span><span class="s0">, </span><span class="s3">300</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        mainscreen = </span><span class="s0">new </span><span class="s1">Scene(lay2</span><span class="s0">, </span><span class="s1">x</span><span class="s0">, </span><span class="s1">y)</span><span class="s0">;</span><span class="s1"> 
+ 
+        scenepop = </span><span class="s0">new </span><span class="s1">Label(</span><span class="s4">&quot;Welcome to the Memory Game.</span><span class="s0">\n</span><span class="s4">Instructions: Starting with level 1, &quot; </span><span class="s1">+ 
+                </span><span class="s4">&quot;There will be three shapes appearing on the screen in quick secession. Repeat the shapes the computer displayed&quot; </span><span class="s1">+ 
+                </span><span class="s4">&quot;and click them in the order they were displayed in.&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        scenepop.setFont(</span><span class="s0">new </span><span class="s1">Font(</span><span class="s4">&quot;Comic Sans&quot;</span><span class="s0">, </span><span class="s3">20</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+        scenepop.setMaxWidth(</span><span class="s3">350</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        scenepop.setWrapText(</span><span class="s0">true</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        scenepop.setLayoutX(</span><span class="s3">10</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        scenepop.setLayoutY(</span><span class="s3">10</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        lay.getChildren().add(scenepop)</span><span class="s0">;</span><span class="s1"> 
+ 
+        proceed = </span><span class="s0">new </span><span class="s1">Button(</span><span class="s4">&quot;Start Game&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        proceed.setOnAction(e -&gt; window.setScene(mainscreen))</span><span class="s0">;</span><span class="s1"> 
+        proceed.setLayoutX(</span><span class="s3">300</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        proceed.setLayoutY(</span><span class="s3">265</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        lay.getChildren().add(proceed)</span><span class="s0">;</span><span class="s1"> 
+ 
+        window.setScene(firstscene)</span><span class="s0">;</span><span class="s1"> 
+        window.setTitle(</span><span class="s4">&quot;Memory Game&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        window.show()</span><span class="s0">;</span><span class="s1"> 
+ 
+        </span><span class="s2">//Building the main game</span><span class="s1"> 
+        horiz = </span><span class="s0">new </span><span class="s1">Line(x</span><span class="s0">, </span><span class="s1">y / </span><span class="s3">7</span><span class="s0">, </span><span class="s3">0</span><span class="s0">, </span><span class="s1">y / </span><span class="s3">7</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        horiz.setStroke(Color.BLUE)</span><span class="s0">;</span><span class="s1"> 
+        horiz.setStrokeWidth(</span><span class="s3">5</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        lay2.getChildren().add(horiz)</span><span class="s0">;</span><span class="s1"> 
+ 
+        mainTitle = </span><span class="s0">new </span><span class="s1">Label(</span><span class="s4">&quot;Memory Game&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        mainTitle.setFont(</span><span class="s0">new </span><span class="s1">Font(</span><span class="s4">&quot;Garamond&quot;</span><span class="s0">, </span><span class="s3">42</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+        lay2.getChildren().add(mainTitle)</span><span class="s0">;</span><span class="s1"> 
+ 
+        </span><span class="s0">int </span><span class="s1">h = </span><span class="s3">50</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s2">//Draw the 8 squares which will be displayed.</span><span class="s1"> 
+ 
+        Rectangle[] r = </span><span class="s0">new </span><span class="s1">Rectangle[</span><span class="s3">8</span><span class="s1">]</span><span class="s0">;</span><span class="s1"> 
+ 
+        r[</span><span class="s3">0</span><span class="s1">] = </span><span class="s0">new </span><span class="s1">Rectangle(h</span><span class="s0">, </span><span class="s3">100</span><span class="s0">, </span><span class="s3">150</span><span class="s0">, </span><span class="s3">150</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        r[</span><span class="s3">1</span><span class="s1">] = </span><span class="s0">new </span><span class="s1">Rectangle(h + </span><span class="s3">250</span><span class="s0">, </span><span class="s3">100</span><span class="s0">, </span><span class="s3">150</span><span class="s0">, </span><span class="s3">150</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        r[</span><span class="s3">2</span><span class="s1">] = </span><span class="s0">new </span><span class="s1">Rectangle(h + </span><span class="s3">500</span><span class="s0">, </span><span class="s3">100</span><span class="s0">, </span><span class="s3">150</span><span class="s0">, </span><span class="s3">150</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        r[</span><span class="s3">3</span><span class="s1">] = </span><span class="s0">new </span><span class="s1">Rectangle(h + </span><span class="s3">750</span><span class="s0">, </span><span class="s3">100</span><span class="s0">, </span><span class="s3">150</span><span class="s0">, </span><span class="s3">150</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        r[</span><span class="s3">4</span><span class="s1">] = </span><span class="s0">new </span><span class="s1">Rectangle(h</span><span class="s0">, </span><span class="s3">350</span><span class="s0">, </span><span class="s3">150</span><span class="s0">, </span><span class="s3">150</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        r[</span><span class="s3">5</span><span class="s1">] = </span><span class="s0">new </span><span class="s1">Rectangle(h + </span><span class="s3">250</span><span class="s0">, </span><span class="s3">350</span><span class="s0">, </span><span class="s3">150</span><span class="s0">, </span><span class="s3">150</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        r[</span><span class="s3">6</span><span class="s1">] = </span><span class="s0">new </span><span class="s1">Rectangle(h + </span><span class="s3">500</span><span class="s0">, </span><span class="s3">350</span><span class="s0">, </span><span class="s3">150</span><span class="s0">, </span><span class="s3">150</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        r[</span><span class="s3">7</span><span class="s1">] = </span><span class="s0">new </span><span class="s1">Rectangle(h + </span><span class="s3">750</span><span class="s0">, </span><span class="s3">350</span><span class="s0">, </span><span class="s3">150</span><span class="s0">, </span><span class="s3">150</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+        </span><span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s3">0</span><span class="s0">; </span><span class="s1">i &lt; </span><span class="s3">8</span><span class="s0">; </span><span class="s1">i++) { 
+            r[i].setStroke(Color.RED)</span><span class="s0">;</span><span class="s1"> 
+            lay2.getChildren().add(r[i])</span><span class="s0">;</span><span class="s1"> 
+            Rectangle tmp = r[i]</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s2">// THIS WORKS           r[i].setOnMouseClicked(e -&gt; tmp.setFill(Color.RED));</span><span class="s1"> 
+            r[i].setOnMouseClicked(e -&gt; onclick(tmp))</span><span class="s0">;</span><span class="s1"> 
+        } 
+        Random rand = </span><span class="s0">new </span><span class="s1">Random()</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s2">//Creating a pause of 1/2 seconds between the different colored shapes</span><span class="s1"> 
+        </span><span class="s0">int </span><span class="s1">pausenum = </span><span class="s3">5</span><span class="s0">;</span><span class="s1"> 
+        PauseTransition pause = </span><span class="s0">new </span><span class="s1">PauseTransition(javafx.util.Duration.seconds(pausenum))</span><span class="s0">;</span><span class="s1"> 
+        PauseTransition pause2 = </span><span class="s0">new </span><span class="s1">PauseTransition(javafx.util.Duration.seconds(pausenum + </span><span class="s3">0.5</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+        PauseTransition pause3 = </span><span class="s0">new </span><span class="s1">PauseTransition(javafx.util.Duration.seconds(pausenum + </span><span class="s3">1</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+ 
+        PauseTransition pausefin1 = </span><span class="s0">new </span><span class="s1">PauseTransition(javafx.util.Duration.seconds(pausenum + </span><span class="s3">1.5</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+        PauseTransition pausefin2 = </span><span class="s0">new </span><span class="s1">PauseTransition(javafx.util.Duration.seconds(pausenum + </span><span class="s3">1.5</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+        PauseTransition pausefin3 = </span><span class="s0">new </span><span class="s1">PauseTransition(javafx.util.Duration.seconds(pausenum + </span><span class="s3">1.5</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+ 
+        randval1 = rand.nextInt(</span><span class="s3">7</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        r[randval1].setFill(Color.BLACK)</span><span class="s0">;</span><span class="s1"> 
+        System.out.println(randval1)</span><span class="s0">;</span><span class="s1"> 
+        pause.setOnFinished(event -&gt; r[randval1].setFill(Color.SKYBLUE))</span><span class="s0">;</span><span class="s1"> 
+        pause.play()</span><span class="s0">;</span><span class="s1"> 
+ 
+ 
+        randval2 = rand.nextInt(</span><span class="s3">7</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        r[randval2].setFill(Color.BLACK)</span><span class="s0">;</span><span class="s1"> 
+        System.out.println(randval2)</span><span class="s0">;</span><span class="s1"> 
+        pause2.setOnFinished(event -&gt; r[randval2].setFill(Color.MAGENTA))</span><span class="s0">;</span><span class="s1"> 
+        pause2.play()</span><span class="s0">;</span><span class="s1"> 
+ 
+ 
+        randval3 = rand.nextInt(</span><span class="s3">7</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        r[randval3].setFill(Color.BLACK)</span><span class="s0">;</span><span class="s1"> 
+        System.out.println(randval3)</span><span class="s0">;</span><span class="s1"> 
+        pause3.setOnFinished(event -&gt; r[randval3].setFill(Color.DARKGREEN))</span><span class="s0">;</span><span class="s1"> 
+        pause3.play()</span><span class="s0">;</span><span class="s1"> 
+ 
+        </span><span class="s2">//  for(int j = 1; j &lt;= 3; j++) {</span><span class="s1"> 
+        </span><span class="s2">//   j = randval1;</span><span class="s1"> 
+        pausefin1.setOnFinished(event -&gt; r[randval1].setFill(Color.BLACK))</span><span class="s0">;</span><span class="s1"> 
+        pausefin1.play()</span><span class="s0">;</span><span class="s1"> 
+        pausefin2.setOnFinished(event -&gt; r[randval2].setFill(Color.BLACK))</span><span class="s0">;</span><span class="s1"> 
+        pausefin2.play()</span><span class="s0">;</span><span class="s1"> 
+        pausefin3.setOnFinished(event -&gt; r[randval3].setFill(Color.BLACK))</span><span class="s0">;</span><span class="s1"> 
+        pausefin3.play()</span><span class="s0">;</span><span class="s1"> 
+        } 
+ 
+ 
+ 
+ 
+ 
+    } 
+ 
+ 
+</span></pre>
+</body>
+</html>

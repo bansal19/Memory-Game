@@ -1,0 +1,134 @@
+package canvastest;
+
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.ArcType;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
+import javafx.scene.control.Button;
+import org.w3c.dom.css.Rect;
+import java.util.Random;
+
+import java.lang.reflect.Array;
+
+public class BasicOpsTest extends Application {
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+    int x = 1000;
+    int y = 600;
+    Stage window;
+    Scene firstscene, mainscreen;
+    Label scenepop, mainTitle;
+    Button proceed;
+    Pane lay;
+    Pane lay2;
+    Line horiline;
+
+    @Override
+    public void start(Stage primaryStage) {
+        window = primaryStage;
+
+        lay = new Pane();
+        lay2 = new Pane();
+//Building the first scene that displays the instructions
+        firstscene = new Scene(lay,400,300);
+        mainscreen = new Scene(lay2, x, y);
+
+        scenepop = new Label("Welcome to the Memory Game.\nInstructions: Starting with level 1, " +
+                "There will be three shapes appearing on the screen in quick secession. Repeat the shapes the computer displayed" +
+                "and click them in the order they were displayed in.");
+        scenepop.setMaxWidth(350);
+        scenepop.setWrapText(true);
+        scenepop.setLayoutX(10);
+        scenepop.setLayoutY(10);
+        lay.getChildren().add(scenepop);
+
+        proceed = new Button("Start Game");
+        proceed.setOnAction(e -> window.setScene(mainscreen));
+        proceed.setLayoutX(280);
+        proceed.setLayoutY(275);
+        lay.getChildren().add(proceed);
+
+        window.setScene(firstscene);
+        window.setTitle("Memory Game");
+        window.show();
+
+        //Building the main game
+        horiline = new Line(x, y/7, 0, y/7);
+        horiline.setStroke(Color.BLUE);
+        horiline.setStrokeWidth(5);
+        lay2.getChildren().add(horiline);
+
+        mainTitle = new Label("Memory Game");
+        mainTitle.setFont(new Font("Cambria", 32));
+        lay2.getChildren().add(mainTitle);
+
+        int h = 50;
+        //Draw the 8 squares
+
+            Rectangle r = new Rectangle(h, 100, 150, 150);
+            r.setStroke(Color.RED);
+            lay2.getChildren().add(r);
+            r.setOnMouseClicked(e -> r.setFill(Color.RED));
+
+             Rectangle r1 = new Rectangle(h+250, 100, 150, 150);
+            r1.setStroke(Color.RED);
+            lay2.getChildren().add(r1);
+        r1.setOnMouseClicked(e -> r1.setFill(Color.RED));
+
+            Rectangle r2 = new Rectangle(h+500, 100, 150, 150);
+            r2.setStroke(Color.RED);
+            lay2.getChildren().add(r2);
+        r2.setOnMouseClicked(e -> r2.setFill(Color.RED));
+
+            Rectangle r3 = new Rectangle(h+750, 100, 150, 150);
+            r3.setStroke(Color.RED);
+            lay2.getChildren().add(r3);
+        r3.setOnMouseClicked(e -> r3.setFill(Color.RED));
+
+            Rectangle r4 = new Rectangle(h, 350, 150, 150);
+            r4.setStroke(Color.DEEPSKYBLUE);
+            lay2.getChildren().add(r4);
+        r4.setOnMouseClicked(e -> r4.setFill(Color.RED));
+
+            Rectangle r5 = new Rectangle(h+250, 350, 150, 150);
+            r5.setStroke(Color.DEEPSKYBLUE);
+            lay2.getChildren().add(r5);
+        r5.setOnMouseClicked(e -> r5.setFill(Color.RED));
+
+            Rectangle r6 = new Rectangle(h+500, 350, 150, 150);
+            r6.setStroke(Color.DEEPSKYBLUE);
+            lay2.getChildren().add(r6);
+        r6.setOnMouseClicked(e -> r6.setFill(Color.RED));
+
+            Rectangle r7 = new Rectangle(h+750, 350, 150, 150);
+            r7.setStroke(Color.DEEPSKYBLUE);
+            lay2.getChildren().add(r7);
+        r7.setOnMouseClicked(e -> r7.setFill(Color.RED));
+
+// Setting a Random integer to display
+    Random rand = new Random();
+        int randval = rand.nextInt(8) + 1;
+        System.out.print(randval);
+        r[randval]
+
+        }
+        }
+
+
+
+
